@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc 
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+ 		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
+       <property name="driverClassName"  value="org.mariadb.jdbc.Driver"/>
+
+       <property name="url" value="jdbc:mysql://47/newlecture?autoReconnect=true&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>
+       <property name="username" value="rland" />
+       <property name="password" value="20231110"/>
+
+       
+       <property name="removeAbandoned" value="true"/>
+      <property name="initialSize" value="20" />
+      <property name="maxActive" value="30" />
+    </bean>
+
+	<context:component-scan base-package="kr.co.rland.web"></context:component-scan> 
+	<!-- 서버실행되면 WEB.XML에서 dispatcher-servlet.xml 을 읽는데 이놈 역할이 초기화시 base-package에 담은 경로와 이름이 같은
+	패키지를 스캔한다.  걍 서버 시작하면 어노테이션써놓은 패키지 전부 스캔한다 이거임 ㅁㅊ-->
+	
+	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix"  value="/"/>
+      <property name="suffix" value=".jsp" />
+      <property name="order"  value="1"/>
+   </bean> -->
+	
+  <!--  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix"  value="/WEB-INF/view/"/>
+      <property name="suffix" value=".jsp" />
+      <property name="order"  value="2"/>
+   </bean> -->
+</beans>
